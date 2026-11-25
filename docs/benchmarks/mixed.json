@@ -1,0 +1,118 @@
+{
+  "startedAt": "2026-11-25T11:35:25.428Z",
+  "runtime": "v24.18.0",
+  "sessions": 12,
+  "tenants": 3,
+  "initialTasksPerTenant": 36,
+  "rampSeconds": 30,
+  "plateauSeconds": 300,
+  "periodMs": 1900,
+  "elapsedSeconds": 360,
+  "overall": {
+    "requests": 2106,
+    "failures": 0,
+    "p50Ms": 27.01,
+    "p95Ms": 52.93,
+    "p99Ms": 61.91,
+    "maxMs": 734.08
+  },
+  "byOperation": {
+    "board": {
+      "requests": 630,
+      "failures": 0,
+      "p50Ms": 22.14,
+      "p95Ms": 31.23,
+      "p99Ms": 41.12,
+      "maxMs": 79.75
+    },
+    "details": {
+      "requests": 212,
+      "failures": 0,
+      "p50Ms": 23.06,
+      "p95Ms": 40.21,
+      "p99Ms": 78.34,
+      "maxMs": 734.08
+    },
+    "history": {
+      "requests": 211,
+      "failures": 0,
+      "p50Ms": 29.78,
+      "p95Ms": 45.85,
+      "p99Ms": 55.83,
+      "maxMs": 73.49
+    },
+    "edit": {
+      "requests": 421,
+      "failures": 0,
+      "p50Ms": 42.88,
+      "p95Ms": 53.26,
+      "p99Ms": 62.36,
+      "maxMs": 70.96
+    },
+    "notifications": {
+      "requests": 211,
+      "failures": 0,
+      "p50Ms": 27.32,
+      "p95Ms": 42.43,
+      "p99Ms": 50.59,
+      "maxMs": 80.11
+    },
+    "post": {
+      "requests": 211,
+      "failures": 0,
+      "p50Ms": 49.93,
+      "p95Ms": 61.91,
+      "p99Ms": 70.89,
+      "maxMs": 109.87
+    },
+    "channels": {
+      "requests": 210,
+      "failures": 0,
+      "p50Ms": 28.06,
+      "p95Ms": 42.54,
+      "p99Ms": 50.92,
+      "maxMs": 52.77
+    }
+  },
+  "byPhase": {
+    "rampUp": {
+      "requests": 108,
+      "failures": 0,
+      "p50Ms": 34.47,
+      "p95Ms": 65.26,
+      "p99Ms": 132.84,
+      "maxMs": 734.08
+    },
+    "plateau": {
+      "requests": 1896,
+      "failures": 0,
+      "p50Ms": 26.49,
+      "p95Ms": 51.73,
+      "p99Ms": 60,
+      "maxMs": 80.11
+    },
+    "rampDown": {
+      "requests": 102,
+      "failures": 0,
+      "p50Ms": 26.55,
+      "p95Ms": 52.24,
+      "p99Ms": 59.07,
+      "maxMs": 60.16
+    }
+  },
+  "thresholds": {
+    "readP95Ms": 500,
+    "writeP95Ms": 1000,
+    "maxFailures": 0,
+    "minPlateauRequests": 1799
+  },
+  "failures": {},
+  "reconciliation": {
+    "edits": 421,
+    "messages": 211,
+    "workflows": 214,
+    "socketDeliveries": 844,
+    "elapsedMs": 450
+  },
+  "passed": true
+}

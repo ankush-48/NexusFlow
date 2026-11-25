@@ -1,0 +1,42 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "NexusFlow domain event v1",
+  "type": "object",
+  "required": [
+    "version",
+    "id",
+    "orgId",
+    "type",
+    "correlationId",
+    "occurredAt",
+    "payload"
+  ],
+  "properties": {
+    "version": {
+      "const": 1
+    },
+    "id": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "orgId": {
+      "type": "string",
+      "format": "uuid"
+    },
+    "type": {
+      "type": "string",
+      "minLength": 1,
+      "maxLength": 80
+    },
+    "correlationId": {
+      "type": "string",
+      "pattern": "^[a-zA-Z0-9-]{1,64}$"
+    },
+    "occurredAt": {
+      "type": "string"
+    },
+    "payload": {
+      "type": "object"
+    }
+  }
+}

@@ -1,0 +1,135 @@
+{
+  "title": "NexusFlow service health",
+  "uid": "nexusflow-health",
+  "schemaVersion": 39,
+  "timezone": "browser",
+  "refresh": "30s",
+  "panels": [
+    {
+      "id": 1,
+      "type": "timeseries",
+      "title": "Core requests per second",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "nexus-prometheus"
+      },
+      "gridPos": {
+        "x": 0,
+        "y": 0,
+        "h": 8,
+        "w": 12
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "sum(rate(http_server_requests_seconds_count{job=\"core\"}[5m]))"
+        }
+      ]
+    },
+    {
+      "id": 2,
+      "type": "timeseries",
+      "title": "Core request latency, p95",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "nexus-prometheus"
+      },
+      "gridPos": {
+        "x": 12,
+        "y": 0,
+        "h": 8,
+        "w": 12
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "histogram_quantile(0.95,sum by (le) (rate(http_server_requests_seconds_bucket{job=\"core\"}[5m])))"
+        }
+      ]
+    },
+    {
+      "id": 3,
+      "type": "timeseries",
+      "title": "Core server errors per second",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "nexus-prometheus"
+      },
+      "gridPos": {
+        "x": 0,
+        "y": 8,
+        "h": 8,
+        "w": 12
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "sum(rate(http_server_requests_seconds_count{job=\"core\",status=~\"5..\"}[5m]))"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "type": "timeseries",
+      "title": "Database connections in use",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "nexus-prometheus"
+      },
+      "gridPos": {
+        "x": 12,
+        "y": 8,
+        "h": 8,
+        "w": 12
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "sum(hikaricp_connections_active{job=\"core\"})"
+        }
+      ]
+    },
+    {
+      "id": 5,
+      "type": "timeseries",
+      "title": "Gateway routes requests per second",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "nexus-prometheus"
+      },
+      "gridPos": {
+        "x": 0,
+        "y": 16,
+        "h": 8,
+        "w": 12
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "sum by (routeId) (rate(spring_cloud_gateway_requests_seconds_count{job=\"gateway\"}[5m]))"
+        }
+      ]
+    },
+    {
+      "id": 6,
+      "type": "timeseries",
+      "title": "Services reachable",
+      "datasource": {
+        "type": "prometheus",
+        "uid": "nexus-prometheus"
+      },
+      "gridPos": {
+        "x": 12,
+        "y": 16,
+        "h": 8,
+        "w": 12
+      },
+      "targets": [
+        {
+          "refId": "A",
+          "expr": "up"
+        }
+      ]
+    }
+  ]
+}

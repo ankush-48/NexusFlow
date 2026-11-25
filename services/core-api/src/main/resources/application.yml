@@ -1,0 +1,54 @@
+server:
+  port: ${CORE_PORT:8081}
+  shutdown: graceful
+  error:
+    include-message: never
+spring:
+  application:
+    name: nexusflow-core
+  servlet:
+    multipart:
+      max-file-size: 5MB
+      max-request-size: 6MB
+  mvc:
+    problemdetails:
+      enabled: true
+  datasource:
+    url: ${CORE_DB_URL:jdbc:postgresql://localhost:5432/nexusflow}
+    username: ${CORE_DB_USER:nexusflow}
+    password: ${CORE_DB_PASSWORD:}
+    hikari:
+      maximum-pool-size: 12
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: validate
+  kafka:
+    bootstrap-servers: ${KAFKA_BROKERS:localhost:9092}
+    producer:
+      acks: all
+      properties:
+        enable.idempotence: true
+        max.block.ms: 3000
+        delivery.timeout.ms: 10000
+        request.timeout.ms: 5000
+  mail:
+    host: ${SMTP_HOST:localhost}
+    port: ${SMTP_PORT:1025}
+    properties:
+      mail.smtp.connectiontimeout: 3000
+      mail.smtp.timeout: 3000
+      mail.smtp.writetimeout: 3000
+management:
+  endpoints.web.exposure.include: health,prometheus
+  endpoint.health.probes.enabled: true
+  metrics.distribution.percentiles-histogram.http.server.requests: true
+nexus:
+  origin: ${NEXUS_ORIGIN:http://localhost:3000}
+  secure-cookies: ${NEXUS_SECURE_COOKIES:true}
+  demo-password: ${NEXUS_DEMO_PASSWORD:}
+  worker-secret: ${NEXUS_WORKER_SECRET:}
+  outbox-enabled: ${NEXUS_OUTBOX_ENABLED:true}
+  billing: ${NEXUS_BILLING_MODE:disabled}
+  verify-email: ${NEXUS_VERIFY_EMAIL:true}
+  mail-from: ${NEXUS_MAIL_FROM:noreply@nexusflow.example}

@@ -1,0 +1,312 @@
+{
+  "orgs": [
+    {
+      "id": "00000000-0000-4000-8000-000000000001",
+      "name": "Orbit Labs",
+      "plan": "Professional",
+      "role": "Owner"
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000002",
+      "name": "Northstar Studio",
+      "plan": "Free",
+      "role": "Owner"
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000003",
+      "name": "Meridian Systems",
+      "plan": "Enterprise",
+      "role": "Owner"
+    }
+  ],
+  "people": [
+    {
+      "id": "00000000-0000-4000-8000-000000000101",
+      "name": "Alex Morgan",
+      "email": "alex@orbit.example",
+      "role": "Owner"
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000102",
+      "name": "Maya Chen",
+      "email": "maya@orbit.example",
+      "role": "Project Manager"
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000103",
+      "name": "Jordan Lee",
+      "email": "jordan@orbit.example",
+      "role": "Member"
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000104",
+      "name": "Sam Rivera",
+      "email": "sam@orbit.example",
+      "role": "Admin"
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000105",
+      "name": "Priya Patel",
+      "email": "priya@orbit.example",
+      "role": "Member"
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000106",
+      "name": "Noah Williams",
+      "email": "noah@orbit.example",
+      "role": "Viewer"
+    }
+  ],
+  "projects": [
+    {
+      "id": "00000000-0000-4000-8000-000000000201",
+      "title": "Customer insights hub",
+      "description": "Bring customer interviews, support signals, and feature requests into one searchable workspace.",
+      "status": "Planned",
+      "priority": "High",
+      "team": "Product",
+      "due": 21,
+      "start": -4,
+      "owner": "00000000-0000-4000-8000-000000000102",
+      "org": 1
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000202",
+      "title": "Design system v2",
+      "description": "Refresh the component library with accessible tokens, patterns, and updated documentation.",
+      "status": "Planned",
+      "priority": "Medium",
+      "team": "Design",
+      "due": 27,
+      "start": -2,
+      "owner": "00000000-0000-4000-8000-000000000105",
+      "org": 1
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000203",
+      "title": "Billing infrastructure",
+      "description": "Build the foundation for usage-based plans, invoicing, and subscription events.",
+      "status": "Planned",
+      "priority": "High",
+      "team": "Platform",
+      "due": 36,
+      "start": 2,
+      "owner": "00000000-0000-4000-8000-000000000104",
+      "org": 1
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000204",
+      "title": "Partner developer portal",
+      "description": "Give integration partners a single place to explore APIs, credentials, and usage.",
+      "status": "Planned",
+      "priority": "Low",
+      "team": "Platform",
+      "due": 44,
+      "start": 5,
+      "owner": "00000000-0000-4000-8000-000000000106",
+      "org": 1
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000205",
+      "title": "Workspace onboarding",
+      "description": "Guide new teams from their first workspace to a successful project launch.",
+      "status": "In progress",
+      "priority": "High",
+      "team": "Product",
+      "due": 6,
+      "start": -19,
+      "owner": "00000000-0000-4000-8000-000000000101",
+      "org": 1
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000206",
+      "title": "Realtime collaboration",
+      "description": "Ship presence, live updates, and channel messaging across the workspace.",
+      "status": "In progress",
+      "priority": "Urgent",
+      "team": "Engineering",
+      "due": 10,
+      "start": -25,
+      "owner": "00000000-0000-4000-8000-000000000103",
+      "org": 1
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000207",
+      "title": "Reporting & analytics",
+      "description": "Help leads see delivery health and turn team activity into actionable reports.",
+      "status": "In progress",
+      "priority": "Medium",
+      "team": "Data",
+      "due": 17,
+      "start": -14,
+      "owner": "00000000-0000-4000-8000-000000000105",
+      "org": 1
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000208",
+      "title": "Mobile navigation",
+      "description": "Simplify common workspace actions for teams working from smaller screens.",
+      "status": "In progress",
+      "priority": "Medium",
+      "team": "Design",
+      "due": 23,
+      "start": -9,
+      "owner": "00000000-0000-4000-8000-000000000102",
+      "org": 1
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000209",
+      "title": "Access control rollout",
+      "description": "Introduce workspace-scoped roles and auditable permission changes.",
+      "status": "Completed",
+      "priority": "High",
+      "team": "Platform",
+      "due": -3,
+      "start": -31,
+      "owner": "00000000-0000-4000-8000-000000000104",
+      "org": 1
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000210",
+      "title": "Marketing site refresh",
+      "description": "Launch a clearer product story and updated visual identity across key pages.",
+      "status": "Completed",
+      "priority": "Medium",
+      "team": "Design",
+      "due": -7,
+      "start": -34,
+      "owner": "00000000-0000-4000-8000-000000000102",
+      "org": 1
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000211",
+      "title": "Notification center",
+      "description": "Give each team member a single inbox for updates that need their attention.",
+      "status": "Completed",
+      "priority": "Medium",
+      "team": "Engineering",
+      "due": -12,
+      "start": -38,
+      "owner": "00000000-0000-4000-8000-000000000103",
+      "org": 1
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000212",
+      "title": "Workspace audit trail",
+      "description": "Make important workspace activity traceable for organization admins.",
+      "status": "Completed",
+      "priority": "High",
+      "team": "Platform",
+      "due": -15,
+      "start": -41,
+      "owner": "00000000-0000-4000-8000-000000000101",
+      "org": 1
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000213",
+      "title": "Event delivery v2",
+      "description": "Move domain events onto versioned contracts with retries and replay support.",
+      "status": "In progress",
+      "priority": "High",
+      "team": "Engineering",
+      "due": 14,
+      "start": -16,
+      "owner": "00000000-0000-4000-8000-000000000103",
+      "org": 2
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000214",
+      "title": "Customer migration",
+      "description": "Bring the pilot workspaces across with validated settings and team memberships.",
+      "status": "Completed",
+      "priority": "Medium",
+      "team": "Product",
+      "due": -17,
+      "start": -42,
+      "owner": "00000000-0000-4000-8000-000000000105",
+      "org": 3
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000215",
+      "title": "Search relevance",
+      "description": "Improve recall for projects, tasks, and people with tenant-scoped results.",
+      "status": "Planned",
+      "priority": "Medium",
+      "team": "Data",
+      "due": 31,
+      "start": 3,
+      "owner": "00000000-0000-4000-8000-000000000106",
+      "org": 3
+    }
+  ],
+  "channels": [
+    {
+      "id": "00000000-0000-4000-8000-000000000701",
+      "name": "general"
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000702",
+      "name": "engineering"
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000703",
+      "name": "design"
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000704",
+      "name": "launch-room"
+    }
+  ],
+  "messages": [
+    {
+      "id": "00000000-0000-4000-8000-000000000801",
+      "author": "Maya Chen",
+      "body": "The onboarding flow is ready for a final pass. I’ve linked the accessibility checklist in the project.",
+      "offset": -390
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000802",
+      "author": "Jordan Lee",
+      "body": "Real-time updates are working in staging. I’m running the reconnect and multi-tab checks this afternoon.",
+      "offset": -355
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000803",
+      "author": "Priya Patel",
+      "body": "I’ve updated the reporting dashboard with the latest sample data. Let me know if you spot any gaps in the workload view.",
+      "offset": -315
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000804",
+      "author": "Alex Morgan",
+      "body": "Thanks, team. Let’s keep release notes and follow-ups in #launch-room so everyone has the same context.",
+      "offset": -295
+    }
+  ],
+  "rules": [
+    {
+      "id": "00000000-0000-4000-8000-000000000901",
+      "title": "Notify on task completion",
+      "trigger": "task.completed",
+      "priority": "Any",
+      "message": "A task has been completed.",
+      "active": true
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000902",
+      "title": "Flag high-priority work",
+      "trigger": "task.created",
+      "priority": "High",
+      "message": "A high-priority task needs attention.",
+      "active": true
+    },
+    {
+      "id": "00000000-0000-4000-8000-000000000903",
+      "title": "Remind on overdue tasks",
+      "trigger": "task.overdue",
+      "priority": "Any",
+      "message": "An assigned task is overdue.",
+      "active": false
+    }
+  ]
+}

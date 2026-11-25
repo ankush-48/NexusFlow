@@ -1,0 +1,30 @@
+server:
+  port: ${GATEWAY_PORT:8080}
+  shutdown: graceful
+spring:
+  application:
+    name: nexusflow-gateway
+  data:
+    redis:
+      url: ${REDIS_URL:redis://localhost:6379}
+  cloud:
+    gateway:
+      server:
+        webflux:
+          websocket:
+            # The public browser origin can be HTTPS while the gateway listens on private HTTP.
+            allowed-origins:
+              - ${NEXUS_ORIGIN:http://localhost:3000}
+          httpclient:
+            connect-timeout: 3000
+            response-timeout: 15s
+management:
+  endpoints.web.exposure.include: health,prometheus
+  endpoint.health.probes.enabled: true
+  health.redis.enabled: ${NEXUS_RATE_LIMIT:true}
+nexus:
+  core: ${CORE_URL:http://localhost:8081}
+  realtime: ${REALTIME_URL:http://localhost:4000}
+  origin: ${NEXUS_ORIGIN:http://localhost:3000}
+  rate-limit: ${NEXUS_RATE_LIMIT:true}
+  trust-ingress-ip: ${NEXUS_TRUST_INGRESS_IP:false}

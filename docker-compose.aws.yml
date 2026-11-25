@@ -1,0 +1,87 @@
+x-runtime: &runtime
+  restart: unless-stopped
+  security_opt: [no-new-privileges:true]
+  logging:
+    driver: local
+    options:
+      max-size: 20m
+      max-file: "5"
+
+services:
+  postgres:
+    profiles: [local-fixtures]
+  object-store:
+    profiles: [local-fixtures]
+  mail:
+    profiles: [local-fixtures]
+  kafka:
+    <<: *runtime
+  redis:
+    <<: *runtime
+  core:
+    <<: *runtime
+    image: nexusflow-core:${NEXUS_RELEASE_TAG:?Set an immutable release tag}
+    pull_policy: never
+    cap_drop: [ALL]
+    read_only: true
+    tmpfs: [/tmp]
+    environment:
+      CORE_DB_URL: jdbc:postgresql://${RDS_ENDPOINT:?Set RDS_ENDPOINT}:5432/nexusflow?sslmode=verify-full&sslrootcert=/etc/rds/global-bundle.pem
+      NEXUS_ORIGIN: ${NEXUS_ORIGIN:?Set HTTPS origin}
+      NEXUS_SECURE_COOKIES: "true"
+      NEXUS_VERIFY_EMAIL: "true"
+      NEXUS_DEMO_PASSWORD: ""
+      NEXUS_BILLING_MODE: disabled
+      NEXUS_S3_BUCKET: ${NEXUS_S3_BUCKET:?Set the provisioned bucket name}
+      NEXUS_S3_ENDPOINT: ""
+      NEXUS_S3_CREATE_BUCKET: "false"
+      NEXUS_S3_ACCESS_KEY: ""
+      NEXUS_S3_SECRET_KEY: ""
+      NEXUS_S3_REGION: ${AWS_REGION:-ap-south-1}
+      SMTP_HOST: ${SMTP_HOST:?Set SMTP_HOST}
+      SMTP_PORT: ${SMTP_PORT:-587}
+      SPRING_MAIL_USERNAME: ${SMTP_USERNAME:?Set SMTP_USERNAME}
+      SPRING_MAIL_PASSWORD: ${SMTP_PASSWORD:?Set SMTP_PASSWORD}
+      SPRING_MAIL_PROPERTIES_MAIL_SMTP_AUTH: "true"
+      SPRING_MAIL_PROPERTIES_MAIL_SMTP_STARTTLS_ENABLE: "true"
+      SPRING_MAIL_PROPERTIES_MAIL_SMTP_STARTTLS_REQUIRED: "true"
+      SPRING_MAIL_PROPERTIES_MAIL_SMTP_SSL_CHECKSERVERIDENTITY: "true"
+      MANAGEMENT_ENDPOINT_HEALTH_GROUP_READINESS_INCLUDE: readinessState,db
+      NEXUS_MAIL_FROM: ${SMTP_FROM:?Set SMTP_FROM}
+      SPRINGDOC_API_DOCS_ENABLED: "false"
+      SPRINGDOC_SWAGGER_UI_ENABLED: "false"
+    volumes:
+      - ./infrastructure/terraform/certs/global-bundle.pem:/etc/rds/global-bundle.pem:ro
+    depends_on: !override
+      kafka-init: {condition: service_completed_successfully}
+  realtime:
+    <<: *runtime
+    image: nexusflow-realtime:${NEXUS_RELEASE_TAG:?Set an immutable release tag}
+    pull_policy: never
+    cap_drop: [ALL]
+    read_only: true
+    tmpfs: [/tmp]
+    environment:
+      REALTIME_DB_URL: postgresql://nexusflow_realtime:${REALTIME_DB_PASSWORD}@${RDS_ENDPOINT}:5432/nexusflow_realtime?sslmode=verify-full&sslrootcert=/etc/rds/global-bundle.pem
+      NEXUS_SEED_COLLAB: "false"
+    volumes:
+      - ./infrastructure/terraform/certs/global-bundle.pem:/etc/rds/global-bundle.pem:ro
+  gateway:
+    <<: *runtime
+    image: nexusflow-gateway:${NEXUS_RELEASE_TAG:?Set an immutable release tag}
+    pull_policy: never
+    cap_drop: [ALL]
+    read_only: true
+    tmpfs: [/tmp]
+    environment:
+      MANAGEMENT_ENDPOINT_HEALTH_GROUP_READINESS_INCLUDE: readinessState,redis
+  web:
+    <<: *runtime
+    image: nexusflow-web:${NEXUS_RELEASE_TAG:?Set an immutable release tag}
+    pull_policy: never
+    cap_drop: [ALL]
+  nginx:
+    <<: *runtime
+    volumes:
+      - ./infrastructure/nginx/ingress-aws.conf:/etc/nginx/conf.d/00-ingress.conf:ro
+    ports: !override ["0.0.0.0:3000:80"]

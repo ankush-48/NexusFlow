@@ -1,0 +1,16 @@
+{
+  "name": "nexusflow",
+  "private": true,
+  "workspaces": [
+    "apps/web",
+    "services/realtime-service"
+  ],
+  "scripts": {
+    "dev": "npm run dev -w @nexusflow/web",
+    "build": "npm run build --workspaces",
+    "check": "npm run check --workspaces",
+    "demo": "node scripts/demo.mjs",
+    "build:portfolio": "node scripts/build-portfolio.mjs",
+    "test:integration": "node tests/integration/api.mjs"
+  }
+}

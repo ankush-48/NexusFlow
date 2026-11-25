@@ -1,0 +1,6 @@
+{
+  "responseDuringOutage": 503,
+  "responseAfterRestart": 200,
+  "restartRequestToVerifiedAccessMs": 853,
+  "passed": true
+}

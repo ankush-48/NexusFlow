@@ -1,0 +1,8 @@
+{
+  "startedAt": "2026-11-25T11:41:36.161Z",
+  "acceptedDuringInterruption": 3,
+  "succeededRuns": 3,
+  "durableNotices": 3,
+  "restartRequestToVerifiedDeliveryMs": 26992,
+  "passed": true
+}
