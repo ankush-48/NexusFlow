@@ -150,6 +150,8 @@ jobs:
           done
           exit "$result"
       - if: failure()
-        run: docker compose --profile observability ps -a
+        run: |
+          docker compose --profile observability ps -a
+          docker compose logs --no-color --tail=120 kafka kafka-init postgres core realtime gateway web nginx
       - if: always()
         run: docker compose --profile observability down -v
