@@ -17,7 +17,7 @@ The local release rehearsal used native Nginx, a standalone Next.js build, the S
 | Secure WebSocket | The HTTPS test found an upgrade rejection at the private HTTP gateway. The gateway now allows the exact public origin for WebSocket upgrades. The live HTTPS API suite and browser chat test passed after the change. The browser observed authenticated presence events over WSS. |
 | Infrastructure security scan | Trivy reported zero high or critical findings for the restricted staging test profile and the four application Dockerfiles. The AWS template uses a dedicated KMS key for new attachments and restricts database and SMTP egress. The public defaults still trigger checks for the internet-facing ALB and outbound HTTPS to any address. The restricted scan uses example network ranges and verifies configuration only. [AWS deployment](aws.md) |
 
-The workstation has no Linux Docker engine. Starting all container images together, validating the monitoring profile and scanning the built images remain CI checks awaiting execution on a Linux Docker host. AWS deployment, load-balancer certificate validation and multi-host failover also remain open. The current infrastructure has one application host, one Kafka broker and one Redis instance.
+GitHub Actions ran the complete Compose stack on Linux, including the live API and browser flows, and confirmed Grafana readiness and Prometheus scrapes. The CI run also checks the four application images for dependency advisories. AWS deployment, load-balancer certificate validation and multi-host failover remain open. The current infrastructure has one application host, one Kafka broker and one Redis instance. [GitHub Actions runs](https://github.com/ankush-48/NexusFlow/actions)
 
 ## Repeat the public smoke check
 

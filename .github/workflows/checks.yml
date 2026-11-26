@@ -148,11 +148,15 @@ jobs:
         with:
           version: v0.76.2
       - name: Scan each built application image
+        shell: bash
         run: |
           result=0
           for service in core realtime gateway web; do
-            image_id=$(docker compose images -q "$service")
-            trivy image --image-src docker --scanners vuln --severity HIGH,CRITICAL --ignore-unfixed --exit-code 1 "$image_id" || result=1
+            container=$(docker compose ps -q "$service")
+            image_id=$(docker inspect --type container --format '{{.Image}}' "$container")
+            scan_tag="nexusflow-ci-scan-${service}:${GITHUB_SHA}"
+            docker image tag "$image_id" "$scan_tag"
+            trivy image --image-src docker --scanners vuln --severity HIGH,CRITICAL --ignore-unfixed --exit-code 1 "$scan_tag" || result=1
           done
           exit "$result"
       - if: failure()

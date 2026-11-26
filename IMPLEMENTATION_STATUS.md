@@ -30,7 +30,7 @@
 
 ## Remaining work and verification limits
 
-- The host had no Docker daemon. Compose configuration parsing passed, while container startup, CI execution and the Grafana UI remain unverified. Local integration used native processes. The AWS template passed `terraform validate` and was never applied.
+- GitHub Actions verified Linux container startup, live integration, Grafana readiness and Prometheus scrapes. The AWS template passed `terraform validate`. Hosted deployment and multi-host failover remain unverified.
 - Stripe signature validation was tested with signed fixtures. A hosted checkout, customer portal session and provider invoice retrieval require Stripe test credentials. The invoice history shows mock invoices. Billing and usage metering are limited to plan quotas.
 - Project and analytics snapshots currently cap task results at 2,000 and project results at 500. An installation with large tenants needs server-side report aggregation and cursor-based browsing. Application read caching is in the browser query layer.
 - The workflow builder supports a trigger, one priority condition, and one notification action. Arbitrary branching, an administrative retry UI, and automatic project completion actions are pending. Failed jobs can be inspected in the job queue and dead-letter topic.
