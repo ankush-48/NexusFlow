@@ -2,7 +2,7 @@
 
 NexusFlow gives each team a private workspace to plan projects, see what shipped, chat, and automate routine updates. In the walkthrough, completing a task triggers a real notification and creates an execution record.
 
-[Try the public demo](undefined) · [Watch the 23-second walkthrough](docs/demo.webm) · [Read the engineering case study](docs/portfolio.md)
+[Try the public demo](https://nexusflow-workspace-demo.ay3068756.chatgpt.site) · [Watch the 23-second walkthrough](docs/demo.webm) · [Read the engineering case study](docs/portfolio.md)
 
 [![NexusFlow project board with a link to the video walkthrough](docs/screenshots/projects.png)](docs/demo.webm)
 
@@ -76,6 +76,18 @@ The fixture contains 15 projects, 120 tasks, dated delivery history, and example
 | `STRIPE_SECRET_KEY`, `STRIPE_WEBHOOK_SECRET`, `STRIPE_PRO_PRICE`, `STRIPE_ENTERPRISE_PRICE` | Optional Stripe test billing configuration |
 
 For Stripe test mode, configure a recurring test price per paid plan and allow subscription changes in the Stripe test customer portal. Forward the three `customer.subscription.*` events listed in the [API notes](docs/architecture/api.md) to the webhook. Test fixtures and the local mock billing flow can run without Stripe credentials.
+
+### Send verification emails to real inboxes
+
+Set the public HTTPS URL in `NEXUS_ORIGIN` and set `NEXUS_SECURE_COOKIES=true`. In the local `.env` file, set `SMTP_HOST`, `SMTP_PORT`, `SMTP_USERNAME`, `SMTP_PASSWORD`, and `SMTP_FROM` using a verified sender and an authenticated STARTTLS SMTP account. The default SMTP port is 587. Keep the sender credential in the ignored `.env` file.
+
+Run the same Compose project with the SMTP override:
+
+```bash
+docker compose -f docker-compose.yml -f docker-compose.smtp.yml up -d --wait
+```
+
+New signup and password reset messages go to the email address provided by the user. Users with an unverified account can choose **Resend verification email** on the sign-in page. Use the SMTP override on subsequent updates to preserve the email configuration.
 
 ## Architecture
 

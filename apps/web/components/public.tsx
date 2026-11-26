@@ -129,6 +129,8 @@ export function PublicPage({
   );
   const register = screen === "register";
   const forgot = screen === "forgot-password";
+  const resend =
+    screen === "login" && search.get("resend") === "1" && !tokenMode.verify;
   async function submit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     setFailure("");
@@ -140,6 +142,13 @@ export function PublicPage({
         await request("auth/verify", "POST", { token: tokenMode.verify });
         setTokenMode({ verify: "", reset: "" });
         setNotice("Email verified. You can sign in.");
+        return;
+      }
+      if (resend) {
+        await request("auth/resend-verification", "POST", { email: form.email });
+        setNotice(
+          "If your account needs verification, check your inbox for a new link.",
+        );
         return;
       }
       if (forgot) {
@@ -264,7 +273,9 @@ export function PublicPage({
                 ? tokenMode.reset
                   ? "Set a new password"
                   : "Reset password"
-                : "Sign in to NexusFlow"}
+                : resend
+                  ? "Resend verification email"
+                  : "Sign in to NexusFlow"}
         </h1>
         <form className="form" onSubmit={submit}>
           {register && (
@@ -283,7 +294,7 @@ export function PublicPage({
               />
             </Field>
           )}
-          {!tokenMode.verify && (!forgot || tokenMode.reset) && (
+          {!tokenMode.verify && !resend && (!forgot || tokenMode.reset) && (
             <Field label="Password">
               <input
                 name="password"
@@ -320,13 +331,16 @@ export function PublicPage({
                     ? tokenMode.reset
                       ? "Save password"
                       : "Send reset link"
-                    : "Sign in"}
+                    : resend
+                      ? "Send verification link"
+                      : "Sign in"}
           </Button>
         </form>
         <footer>
-          {screen === "login" ? (
+          {screen === "login" && !resend && !tokenMode.verify ? (
             <>
               <Link href="/forgot-password">Forgot password?</Link>
+              <Link href="/login?resend=1">Resend verification email</Link>
               <Link
                 href={
                   invite
