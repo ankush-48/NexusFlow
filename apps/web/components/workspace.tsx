@@ -906,7 +906,14 @@ function WorkspaceBody({
               switchOrg("00000000-0000-4000-8000-000000000001", false);
               setDemoGuide(false);
             }}>Open sample project</Link>
-            <a className="button ghost" href="/walkthrough.webm" target="_blank" rel="noreferrer">Watch walkthrough</a>
+            <a
+              className="button ghost"
+              href={(process.env.NEXT_PUBLIC_NEXUS_BASE_PATH ?? "") + "/walkthrough.webm"}
+              target="_blank"
+              rel="noreferrer"
+            >
+              Watch walkthrough
+            </a>
           </div>
         </Modal>
       )}

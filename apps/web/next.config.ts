@@ -9,6 +9,7 @@ const config: NextConfig = {
   skipTrailingSlashRedirect: true,
   ...(staticDemo ? {
     output: 'export' as const,
+    basePath: process.env.NEXT_PUBLIC_NEXUS_BASE_PATH || '',
     trailingSlash: true,
   } : process.env.NEXUS_STANDALONE === '1' ? {
     output: 'standalone' as const,

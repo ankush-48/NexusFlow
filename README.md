@@ -2,7 +2,7 @@
 
 NexusFlow gives each team a private workspace to plan projects, see what shipped, chat, and automate routine updates. In the walkthrough, completing a task triggers a real notification and creates an execution record.
 
-[Try the public demo](https://nexusflow-workspace-demo.ay3068756.chatgpt.site) · [Watch the 23-second walkthrough](docs/demo.webm) · [Read the engineering case study](docs/portfolio.md)
+[Try the public demo](https://ankush-48.github.io/NexusFlow/) · [Watch the 23-second walkthrough](docs/demo.webm) · [Read the engineering case study](docs/portfolio.md)
 
 [![NexusFlow project board with a link to the video walkthrough](docs/screenshots/projects.png)](docs/demo.webm)
 
